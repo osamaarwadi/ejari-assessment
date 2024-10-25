@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ToDoList: React.FC = () => {
 
-    const [items, setItems] = useState<string[]>(["Item 1", "Item 2", "Item 3"]);
+    const [items, setItems] = useState<string[]>(() => {
+        return JSON.parse(localStorage.getItem('items') || '[]');
+    });
 
     const addItem = (): void => {
-        const _newItem: string = (document.getElementById("itemTextBox") as HTMLInputElement).value;
-        if (_newItem !== "") {
-            setItems(i => [...i, _newItem]);
+        const newItem: string = (document.getElementById("itemTextBox") as HTMLInputElement).value;
+        if (newItem !== "") {
+            setItems(i => [...i, newItem]);
         }
         else {
-            console.log("Please enter a task.")
+            console.log("Please enter a task.");
         }
+        (document.getElementById("itemTextBox") as HTMLInputElement).value = "";
+    }
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(items));
+    }, [items]);
+    
+    const deleteItem = (index: number): void => {
+        setItems(items.filter((_, i) => i !== index));
     }
     
     return (
@@ -24,7 +35,9 @@ const ToDoList: React.FC = () => {
             {items.map((item, index) =>
                 <li key={index}>
                     {item}
-                </li> 
+                    <button onClick={() => deleteItem(index)}>❌</button>
+                </li>
+                
             )}
         </div>
     </div>
