@@ -1,0 +1,4 @@
+.completed-item {
+    text-decoration: line-through;
+    color: hsl(0, 0%, 59%);
+}
