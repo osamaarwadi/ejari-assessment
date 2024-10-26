@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './ToDoList.css'; 
 
 const ToDoList: React.FC = () => {
 
     interface Item {
+        id: string;
         text: string;
         isCompleted: boolean;
     }
@@ -14,7 +16,7 @@ const ToDoList: React.FC = () => {
 
     enum FilterType { all, pending, completed };
 
-    const [filter, setFilter] = useState<FilterType>(FilterType.pending);
+    const [filter, setFilter] = useState<FilterType>(FilterType.all);
 
     const filterItems = (): Item[] => {
         switch (filter) {
@@ -28,7 +30,8 @@ const ToDoList: React.FC = () => {
     }
 
     const addItem = (): void => {
-        const newItem: Item = { text: (document.getElementById("itemTextBox") as HTMLInputElement).value, 
+        const newItem: Item = { id: uuidv4(),
+                                text: (document.getElementById("itemTextBox") as HTMLInputElement).value, 
                                 isCompleted: false };
         if (newItem.text !== "") {
             setItems(prevItems => [...prevItems, newItem]);
@@ -43,18 +46,18 @@ const ToDoList: React.FC = () => {
         localStorage.setItem('items', JSON.stringify(items));
     }, [items]);
     
-    const deleteItem = (index: number): void => {
-        setItems(items.filter((_, i) => i !== index));
+    const deleteItem = (id: string): void => {
+        setItems(items.filter((item) => item.id !== id));
     }
     
-    const toggleCompletion = (index: number): void => {
-        setItems(prevItems => prevItems.map((item, i) => i === index ? { ...item, isCompleted: !item.isCompleted } : item));    
+    const toggleCompletion = (id: string): void => {
+        setItems(prevItems => prevItems.map((item) => item.id === id ? { ...item, isCompleted: !item.isCompleted } : item));    
     }
 
     const updateFilter = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-        return setFilter(FilterType[event.target.value as keyof typeof FilterType]);
+        setFilter(FilterType[event.target.value as keyof typeof FilterType]);
     }
-    
+
     return (
     <div>
         <div>
@@ -70,17 +73,19 @@ const ToDoList: React.FC = () => {
             </select>
         </div>
         <div>
-            {filterItems().map((item: Item, index: number) =>
-                <li key={index}>
+            <ul>
+            {filterItems().map((item: Item) =>
+                <li key={item.id}>
                     <input
                         type="checkbox" 
                         checked={item.isCompleted}
-                        onChange={() => toggleCompletion(index)}
+                        onChange={() => toggleCompletion(item.id)}
                     />
                     <span className={item.isCompleted ? "completed-item" : ""}> {item.text} </span>
-                    <button onClick={() => deleteItem(index)}>❌</button>
+                    <button onClick={() => deleteItem(item.id)}>❌</button>
                 </li>
             )}
+            </ul>
         </div>
     </div>
     );
