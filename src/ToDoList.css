@@ -2,3 +2,7 @@
     text-decoration: line-through;
     color: hsl(0, 0%, 59%);
 }
+
+.error-message {
+    color: red;
+}

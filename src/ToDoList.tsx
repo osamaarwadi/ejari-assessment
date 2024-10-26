@@ -19,6 +19,10 @@ const ToDoList: React.FC = () => {
 
     const [filter, setFilter] = useState<FilterType>(FilterType.all);
 
+    const [showLimitError, setShowLimitError] = useState<boolean>(false);
+
+    const [showTitleError, setShowTitleError] = useState<boolean>(false);
+
     useEffect(() => {
         if (!isLoaded.current) {
             loadPlaceholderItems();
@@ -52,13 +56,14 @@ const ToDoList: React.FC = () => {
         const newItem: Item = { id: uuidv4(),
                                 title: inputRef.current?.value || "", 
                                 completed: false };
-        if (newItem.title !== "") {
+        if (newItem.title === "") {
+            setShowTitleError(true);
+        } 
+        else if (items.length >= 20) {
+            setShowLimitError(true);
+        } 
+        else if (inputRef.current){
             setItems(prevItems => [...prevItems, newItem]);
-        }
-        else {
-            console.log("Please enter a task.");
-        }
-        if (inputRef.current) {
             inputRef.current.value = "";
         }
     }
@@ -90,7 +95,11 @@ const ToDoList: React.FC = () => {
     <div>
         <div>
             <input type="text" ref={ inputRef }></input>
-            <button onClick={addItem}>Add item</button>
+            <button onClick={() => { setShowLimitError(false); setShowTitleError(false); addItem(); }}>Add item</button>
+        </div>
+        <div>
+            { showLimitError && (<span className="error-message">Max Limit Reached (20)</span>) }
+            { showTitleError && (<span className="error-message">Item title cannot be empty</span>) }
         </div>
         <div>
             <label htmlFor="filter">Filter: </label>
@@ -110,7 +119,7 @@ const ToDoList: React.FC = () => {
                         onChange={() => toggleCompletion(item.id)}
                     />
                     <span className={item.completed ? "completed-item" : ""}> {item.title} </span>
-                    <button onClick={() => deleteItem(item.id)}>❌</button>
+                    <button onClick={() => { setShowLimitError(false); setShowTitleError(false); deleteItem(item.id); }}>❌</button>
                 </li>
             )}
             </ul>
