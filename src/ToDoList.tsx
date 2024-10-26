@@ -1,9 +1,19 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 import './ToDoList.css'; 
 
 const ToDoList: React.FC = () => {
 
+    const APItest = async(): Promise<void> => {
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
     interface Item {
         id: string;
         text: string;
