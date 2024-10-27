@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
+# To-Do List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Your own personal to-do list! This program offers you the ability to manage your tasks by allowing you to add and cross items out as well as filter through them to see what is remaining. No account needed! 
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Stack](#stack)
+- [Installation](#installation)
+- [Usage](#usage)
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend:** React (built using Vite)
+- **Styling:** pure CSS
+- **Other Libraries:** 'Axios' for HTTP requests and 'UUID' for unique ID generation
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- **Node.js** ( v20.12.2+ recommended )
+- **npm**
+  
+To check if you have Node.js and npm installed, run the following commands:
+
+```bash
+node -v
+npm -v
+```
+### Cloning the Repository
+```bash
+git clone github.com/osamaarwadi/ejari-assessment
+cd ejari-assessment
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Before running the app for the first time, install the required dependencies:
+```bash
+npm install
 ```
+
+For running the app:
+```bash
+npm run dev
+```
+Vite will start the development server on http://localhost:5173. Open this URL in your browser to see the app.
+
+Enjoy!
+
+
