@@ -1,8 +1,106 @@
-.completed-item {
-    text-decoration: line-through;
-    color: hsl(0, 0%, 59%);
+* {
+    outline: 2px rgb(162, 0, 255) solid;
 }
 
-.error-message {
-    color: red;
+.app-title {
+    background-color: hsl(200, 100%, 50%);
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    box-shadow: 4px 4px 5px 1px hsl(0, 0%, 50%);
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+.app-body {
+    background-color: hsl(0, 0%, 85%);
+    box-shadow: 4px 4px 5px 1px hsl(0, 0%, 50%);
+    font-family: 'DejaVu Sans Mono', monospace;
+    font-size: 1rem;
+    margin: 10px 0px;
+    padding: 10px 5px;
+}
+
+.input-container {
+    height: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.input-container input {
+    font-family: 'DejaVu Sans Mono', monospace;
+    width: 60%;
+    padding: 0 5px;
+}
+
+.input-container button {
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    padding: 0px 20px;
+    width: 30%;
+}
+
+.error-message-container {
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.2rem;
+    color: hsl(0, 100%, 50%);
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 2px solid hsl(0, 0%, 75%);
+    padding-bottom: 10px;
+}
+
+.filter-container select {
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding: 2px;
+    width: 50%;
+}
+
+.items-container {
+    margin: 0px 10px;
+}
+
+.items-container .item-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.items-container .item-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.items-container .item-options input,
+.items-container .item-options button {
+    width: 35%;
+}
+
+li {
+    border-bottom: 2px solid hsl(0, 0%, 75%);
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.completed-item {
+    text-decoration: line-through;
+    color: hsl(0, 0%, 40%);
 }

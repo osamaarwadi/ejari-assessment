@@ -91,41 +91,48 @@ const ToDoList: React.FC = () => {
         setFilter(FilterType[event.target.value as keyof typeof FilterType]);
     }
 
-    return (
-    <div>
-        <div>
-            <input type="text" ref={ inputRef }></input>
-            <button onClick={() => { setShowLimitError(false); setShowTitleError(false); addItem(); }}>Add item</button>
-        </div>
-        <div>
-            { showLimitError && (<span className="error-message">Max Limit Reached (20)</span>) }
-            { showTitleError && (<span className="error-message">Item title cannot be empty</span>) }
-        </div>
-        <div>
-            <label htmlFor="filter">Filter: </label>
-            <select id="filter" onChange={(e) => updateFilter(e)}>
-                <option value="all">Show All</option>
-                <option value="pending">Pending only</option>
-                <option value="completed">Completed only</option>
-            </select>
-        </div>
-        <div>
-            <ul>
-            {filterItems().map((item: Item) =>
-                <li key={item.id}>
-                    <input
-                        type="checkbox" 
-                        checked={item.completed}
-                        onChange={() => toggleCompletion(item.id)}
-                    />
-                    <span className={item.completed ? "completed-item" : ""}> {item.title} </span>
-                    <button onClick={() => { setShowLimitError(false); setShowTitleError(false); deleteItem(item.id); }}>❌</button>
-                </li>
-            )}
-            </ul>
+    return ( <>
+    <div className="main">
+        <div className="app-title">My To-Do List</div>
+        <div className="app-body">
+            <div className="input-container">
+                <input type="text" placeholder="Enter a new item.." ref={ inputRef }></input>
+                <button onClick={() => { setShowLimitError(false); setShowTitleError(false); addItem(); }}>Add</button>
+            </div>
+            <div className="error-message-container">
+                { showLimitError && (<span>Max Limit Reached (20)</span>) }
+                { showTitleError && (<span>Item title cannot be empty</span>) }
+            </div>
+            <div className="filter-container">
+                <label htmlFor="filter">Filter: </label>
+                <select id="filter" onChange={(e) => updateFilter(e)}>
+                    <option value="all">Show All</option>
+                    <option value="pending">Pending only</option>
+                    <option value="completed">Completed only</option>
+                </select>
+            </div>
+            <div className="items-container">
+                <ul>
+                {filterItems().map((item: Item) =>
+                    <li key={item.id}>
+                        <div className="item-title">
+                            <span className={item.completed ? "completed-item" : ""}> {item.title} </span>
+                        </div>
+                        <div className="item-options">
+                            <input
+                                type="checkbox" 
+                                checked={item.completed}
+                                onChange={() => toggleCompletion(item.id)}
+                            />
+                            <button onClick={() => { setShowLimitError(false); setShowTitleError(false); deleteItem(item.id); }}>❌</button>
+                        </div>
+                    </li>
+                )}
+                </ul>
+            </div>
         </div>
     </div>
-    );
+    </> );
 }
 
 export default ToDoList
