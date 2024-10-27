@@ -1,7 +1,3 @@
-/* * {
-    outline: 2px rgb(162, 0, 255) solid;
-} */
-
 .app-title {
     background-color: hsl(200, 100%, 50%);
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
@@ -42,7 +38,6 @@
 
 .error-message-container {
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.2rem;
     color: hsl(0, 100%, 50%);
     margin: 10px 0;
     display: flex;
@@ -117,6 +112,7 @@ ul {
     }
     
     .app-body {
+        font-size: 1.2rem;
         margin: 15px 10px;
         padding: 20px 20px;
     }
@@ -130,8 +126,14 @@ ul {
         padding: 0 10px;
     }
 
+    .input-container input {
+        font-size: 1.2rem;
+        padding: 0 10px;
+    }
+
     .input-container button {
         width: 25%;
+        font-size: 1.2rem;
     }
     
     .filter-container {
@@ -140,9 +142,56 @@ ul {
     
     .filter-container select {
         width: 40%;
+        font-size: 1.2rem;
     }
     
     .items-container {
         margin: 0px 0px;
+    }
+}
+
+@media (min-width: 768px) {
+    .app-title {
+        margin: 25px 40px;
+    }
+    
+    .app-body {
+        margin: 15px 40px;
+        padding: 20px 40px;
+        font-size: 1.5rem;
+    }
+
+    .input-container button {
+        font-size: 1.5rem;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .item-title {
+        flex: 0 0 70%;
+    }
+
+    .item-title span {
+        width: 100%; 
+    }
+
+    .item-options {
+        display: flex;
+        align-items: center;
+        flex: 0 0 30%;
+        margin-bottom: 10px;
+    }
+
+    .item-options input {
+        flex: 0 0 35%;
+        min-height: none;
+    }
+    .item-options button {
+        flex: 0 0 35%;
+        font-size: 1.2rem;
     }
 }
