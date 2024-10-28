@@ -4,8 +4,6 @@
     font-size: 2rem;
     display: flex;
     justify-content: center;
-    /* box-shadow: 4px 4px 5px 1px hsl(0, 0%, 50%);
-    margin: 10px 0; */
     padding: 10px 0;
 }
 
@@ -108,13 +106,13 @@ ul {
 @media (min-width: 426px) {
     .app-title {
         box-shadow: 4px 4px 5px 1px hsl(0, 0%, 50%);
-        margin: 15px 10px;
+        margin: 15px 20px;
     }
     
     .app-body {
         font-size: 1.2rem;
-        margin: 15px 10px;
-        padding: 20px 20px;
+        margin: 15px 20px;
+        padding: 20px 40px;
     }
     
     .input-container {
@@ -152,12 +150,12 @@ ul {
 
 @media (min-width: 768px) {
     .app-title {
-        margin: 25px 40px;
+        margin: 25px 120px;
     }
     
     .app-body {
-        margin: 15px 40px;
-        padding: 20px 40px;
+        margin: 15px 120px;
+        padding: 20px 60px;
         font-size: 1.5rem;
     }
 
